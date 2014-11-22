@@ -693,7 +693,7 @@ window.RTCIceCandidate = window.mozRTCIceCandidate || window.webkitRTCIceCandida
                 self.rouletteNext();
                 return;
             }
-            self.message(self._('Callee is busy at the moment, please try later :('),'danger',3);
+            self.message(self._('El operador esta ocupado en este momento, por favor intente mas tarde.'),'danger',3);
         });
 
         rtc.on('call_drop', function(data) {
