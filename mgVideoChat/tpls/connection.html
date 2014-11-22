@@ -1,0 +1,67 @@
+
+        <li id="connection_<%=id%>" data-connection_id="<%=id%>" class="list-group-item media connectionItem">
+        <% if (roomOptions.group){ %>
+            <h5 class="media-heading"><%=userData.name%></h5>
+            <% if(connection.rstream) { %>
+            <video class="connectionVideo" autoplay="autoplay"></video>
+            <% } %>
+        <% }else {%>
+            <span class="pull-left">
+            <% if (userData.image){ %>
+                <img class="media-object" src="<%=userData.image%>" alt="<%=userData.name%>">
+            <% }else{ %>
+                <div class="media-object glyphicon glyphicon-user" style="font-size: 32px;"></div>
+            <% } %>
+            </span>
+            <div class="media-body">
+                <h5 class="media-heading"><%=userData.name%></h5>
+                <span id="callCell_<%=id%>">
+                    <span class="callStatus">
+                        <button data-id="<%=id%>" class="cmdBtn chatMsg btn btn-info" title="<% print($.fn.mgVideoChat._('Enviar mensaje')); %>">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </button>
+                        <% if (roomOptions.file){ %>
+                        <button data-id="<%=id%>" class="cmdBtn fileSend btn btn-info" title="<% print($.fn.mgVideoChat._('Send a file')); %>">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </button>
+                        <% }
+                           if(!videoId || videoId == id){ %>
+                            <% if(!roomOptions.roulette && status == 'idle'){ %>
+                            <% if(!roomOptions.disableVideo){ %>
+                            <button data-id="<%=id%>" class="cmdBtn idle call btn btn-success" title="<% print($.fn.mgVideoChat._('Videollamada')); %>">
+                                <span class="glyphicon glyphicon-facetime-video"></span>
+                            </button>
+                            <% } %>
+                            <% if(!roomOptions.disableAudio){ %>
+                            <button data-id="<%=id%>" class="cmdBtn idle callAudio btn btn-success" title="<% print($.fn.mgVideoChat._('Llamada')); %>">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                            </button>
+                            <% }
+                            }
+                            if(!roomOptions.roulette && status == 'call_invited'){ %>
+                            <button data-id="<%=id%>" class="cmdBtn called answer btn btn-success" title="<% print($.fn.mgVideoChat._('Answer')); %>">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                            </button>
+                            <span class="badge status called label label-important">Ringing...</span>
+                            <% }
+                            if(!roomOptions.roulette && status == 'call_inviting'){ %>
+                            <button data-id="<%=id%>" class="cmdBtn calling drop btn btn-danger" title="<% print($.fn.mgVideoChat._('Cancel')); %>">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </button>
+                            <span class="badge status calling label">Llamando...</span>
+                            <% }
+                            if(!roomOptions.roulette && $.inArray(status,['call','sdp_answered','sdp_answering','sdp_offered','sdp_offering','call_accepted','call_accepting']) >= 0){%>
+                            <button data-id="<%=id%>" class="cmdBtn talk drop btn btn-danger" title="<% print($.fn.mgVideoChat._('Finalizar llamada')); %>">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </button>
+                            <span class="badge status talk label"><% print($.fn.mgVideoChat._('Ocupado')); %></span>
+                            <% }
+                            if(unread){%>
+                            <span class="badge unread pull-right"><%=unread%></span>
+                            <% } %>
+                        <% } %>
+                    </span>
+                </span>
+            </div>
+            <% } %>
+        </li>

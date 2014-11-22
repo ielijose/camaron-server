@@ -1,0 +1,174 @@
+<div class="container">
+    <div id="messagePanel">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <div class="text"></div>
+        </div>
+    </div>
+    <!-- LOGIN BUTTONS -->
+    <div id="loginPanel">
+        <button id="loginButton" class="btn btn-primary btn-lg"><% print($.fn.mgVideoChat._('Acceder')); %></button>
+    </div>    
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div id="sideMenu" class="col-sm-8">
+            <div id="filesPanel" class="panel panel-default" style="display: none">
+                <!-- FILES -->
+                <div class="panel-heading">
+                    <h3 class="panel-title">Archivos</h3>
+                </div>
+                <div class="panel-body">
+                    <ul id="files"></ul>
+                </div>
+            </div>
+            <div id="connectionsPanel">
+                <!-- FRIENDS -->
+            </div>
+            <div id="youInfoPanel" class="panel panel-default" style="display: none">
+                <!-- YOU INFO -->
+                <div class="panel-heading">
+                    <h3 class="panel-title"><% print($.fn.mgVideoChat._('Mi perfil')); %></h3>
+                </div>
+                <div class="panel-body" id="youInfo">
+                </div>
+            </div>            
+        </div>
+        <div id="mainContent" class="col-sm-0">
+            <nav id="offcanvasTB" class="navbar navbar-default" role="navigation">
+                <button type="button" id="offcanvasButton" class="navbar-toggle pull-left" data-toggle="offcanvas">                                    
+                    <span class="glyphicon glyphicon-th-list"></span> Toggle menu
+                </button>    
+            </nav>
+            <div id="callPanel" class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Llamar</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="videoPanel">
+                        <div id="videoToolbar" class="btn-group" role="toolbar">                                                       
+                            <button type="button" id="videoFullScreen" class="btn btn-default btn-lg" title="<% print($.fn.mgVideoChat._('Pantalla completa')); %>">
+                                <span class="glyphicon glyphicon-fullscreen"></span>
+                            </button>
+                            <button type="button" id="videoExitFullScreen" class="btn btn-default btn-lg" title="<% print($.fn.mgVideoChat._('Salir pantalla completa')); %>">
+                                <span class="glyphicon glyphicon-resize-small"></span>
+                            </button>
+                            <button type="button" id="callHangup" class="btn btn-danger btn-lg" title="<% print($.fn.mgVideoChat._('Cortar')); %>">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </button>
+                            <button type="button" id="videoMute" class="btn btn-default btn-lg" title="<% print($.fn.mgVideoChat._('Apagar video')); %>" data-title-on="<% print($.fn.mgVideoChat._('Apagar video')); %>" data-title-off="<% print($.fn.mgVideoChat._('Encender video')); %>" data-icon-on="glyphicon-eye-open" data-icon-off="glyphicon-eye-close">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
+                            <button type="button" id="audioMute" class="btn btn-default btn-lg" title="<% print($.fn.mgVideoChat._('Apagar audio')); %>" data-title-on="<% print($.fn.mgVideoChat._('Apagar audio')); %>" data-title-off="<% print($.fn.mgVideoChat._('Encender audio')); %>" data-icon-on="glyphicon-volume-up" data-icon-off="glyphicon-volume-off">
+                                <span class="glyphicon glyphicon-volume-up"></span>
+                            </button>                            
+                        </div>
+                        <video id="remoteVideo" autoplay="autoplay"></video>
+                        <video id="localVideo" autoplay="autoplay" style="display: none" muted="true"></video>
+                        <div id="remoteVideoBg" style="display: none"></div>
+                        <div id="localVideoBg" style="display: none"></div>                        
+                    </div>
+                </div>
+            </div>
+            <div id="chatPanel" class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><% print($.fn.mgVideoChat._('Chat')); %></h3>
+                </div>
+                <div class="panel-body">
+                    <div id="chats"></div>                    
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+<div id="loginDialog" class="modal fade" data-focus-on="input:first" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><% print($.fn.mgVideoChat._('Entrar')); %></h4>
+            </div>
+            <div class="modal-body">
+                <label class="sr-only" for="userName"><% print($.fn.mgVideoChat._('Usuario')); %></label>
+                <input id="userName" class="form-control" type="text" data-tabindex="1" placeholder="Usuario">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary login"><% print($.fn.mgVideoChat._('Acceder')); %></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="answerDialog" class="modal fade" style="display: none" data-caller_id="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Llamando</h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="username"></h3>
+                <div class="desc"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="answer" class="btn btn-success btn-lg" title="<% print($.fn.mgVideoChat._('Contestar con video')); %>">
+                    <span class="glyphicon glyphicon-facetime-video"></span>
+                </button>
+                <button id="answerAudio" class="btn btn-success btn-lg" title="<% print($.fn.mgVideoChat._('Solo audio')); %>">
+                    <span class="glyphicon glyphicon-earphone"></span>
+                </button>
+                <button id="cancelCall" class="btn btn-danger btn-lg" title="<% print($.fn.mgVideoChat._('Cancelar')); %>">
+                    <span class="glyphicon glyphicon-phone-alt"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="requestDialog" class="modal fade" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><% print($.fn.mgVideoChat._('Confirmación de acceso')); %></h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    <% print($.fn.mgVideoChat._('<strong>Aviso!</strong> Por favor, tenga en cuenta el diálogo de confirmación en la parte superior del navegador.')); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fileAcceptDialog" class="modal fade" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><% print($.fn.mgVideoChat._('File Offer')); %></h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="username"></h3>
+                <div class="desc"></div>
+                <p><% print($.fn.mgVideoChat._('is offering a file <strong class="fileName"></strong> of <em class="fileSize"></em>')); %></p>
+            </div>
+            <div class="modal-footer">
+                <button id="fileAccept" class="btn btn-success btn-lg" title="<% print($.fn.mgVideoChat._('Accept file')); %>">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button id="fileCancel" class="btn btn-danger btn-lg" title="<% print($.fn.mgVideoChat._('Reject')); %>">
+                    <span class="glyphicon glyphicon-ban-circle"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio id="ringSound" preload="auto" loop="loop" style="display: none">
+    <source src="<%=config.dir + config.sound.ogg%>" type="audio/ogg">
+    <source src="<%=config.dir + config.sound.mp3%>" type="audio/mpeg">
+</audio>
+<audio id="notifySound" preload="auto" style="display: none">
+    <source src="<%=config.dir + config.notifySound.ogg%>" type="audio/ogg">
+    <source src="<%=config.dir + config.notifySound.mp3%>" type="audio/mpeg">
+</audio>
+<input style="display:none;" id="fileDialog" type="file" />
