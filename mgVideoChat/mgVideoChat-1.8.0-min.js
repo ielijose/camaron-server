@@ -849,7 +849,7 @@ window.RTCIceCandidate = window.mozRTCIceCandidate || window.webkitRTCIceCandida
         });
 
         rtc.on('socket_closed',function(e){
-            self.message(self._('Websocket closed, please try reloading page later.'),'danger');
+            self.message(self._('Conexión cerrada, por favor actualize la página..'),'danger');
             self.onDisconnected();
         });
 
