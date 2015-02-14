@@ -16,7 +16,7 @@ class AuthSimple extends AuthBase implements AuthInterface {
      * @return array|null
      */
     protected function _findUser($config,$username,$password){
-        $conex = mysql_pconnect("localhost", "grupopre_inmobi", "QQ4pNZf424J(") or trigger_error(mysql_error(),E_USER_ERROR); 
+        $conex = mysql_pconnect("localhost", "grupopre_backend", "v4CE}A0;!2Bof0LNF@") or trigger_error(mysql_error(),E_USER_ERROR); 
         mysql_select_db("grupopre_inmobi", $conex);
         $query = "SELECT * FROM operators";
         $operators = mysql_query($query, $conex) or die(mysql_error());
