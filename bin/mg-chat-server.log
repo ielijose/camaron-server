@@ -1,19 +1,11 @@
 
-[mg-chat-server] starting with PID: 5656
+[mg-chat-server] starting with PID: 3330
 Creating friendlist adapter [MgRTC\Friendlist\CallableOperator]
 
-Fatal error: Uncaught exception 'React\Socket\ConnectionException' with message ' in C:\wamp\www\server-camaron\vendor\react\socket\src\Server.php on line 29
-
-React\Socket\ConnectionException: Could not bind to tcp://0.0.0.0:8080: Intento de acceso a un socket no permitido por sus permisos de acceso.
- in C:\wamp\www\server-camaron\vendor\react\socket\src\Server.php on line 29
-
-Call Stack:
-    0.0007     247328   1. {main}() C:\wamp\www\server-camaron\bin\chat-server.php:0
-    0.0157     404480   2. MgRTC\Daemon->run() C:\wamp\www\server-camaron\bin\chat-server.php:96
-    0.0162     405048   3. MgRTC\Daemon->_runRegular() C:\wamp\www\server-camaron\src\MgRTC\Daemon.php:231
-    0.0165     405432   4. call_user_func_array() C:\wamp\www\server-camaron\src\MgRTC\Daemon.php:196
-    0.0166     405464   5. onRun() C:\wamp\www\server-camaron\src\MgRTC\Daemon.php:196
-    0.0168     406024   6. createServer() C:\wamp\www\server-camaron\bin\chat-server.php:66
-    0.0718    1114640   7. Ratchet\Server\IoServer::factory() C:\wamp\www\server-camaron\bin\chat-server.php:52
-    0.0937    1306176   8. React\Socket\Server->listen() C:\wamp\www\server-camaron\vendor\cboden\ratchet\src\Ratchet\Server\IoServer.php:70
-
+Server version: 1.8.0.222, listening on port: 8080
+Creating auth adapter [MgRTC\Session\AuthSimple] for room [4]
+Simple Autorization cookies:
+Array
+(
+)
+New anonim connection! (141) in room (4)
